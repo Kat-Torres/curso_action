@@ -1,17 +1,17 @@
 name: Triggers
-run-name: ¡Estoy aprendiendo a usar diferentes triggers!
+run-name: ¡Estoy aprendiendo a usar diferentes triggers!  #aparece en la consola en la seccion de actions
 on: 
-  push:
+  push:  #triggers 1 corre el worflow cada vez que s ehaga un push rn la rama master
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - '**.py'
-  issues:
+  pull_request: #triggers corre cada vez que se haga un pull request , cada q subamos y hagams push y cada vez que reabrimos un pull
+   types: [opened, synchronize, reopened]
+   paths:
+      - '**.py'  #corre cada vez que hagamos un pr que tenga archivo py si tiene otro tipo de archivo js no corre
+  issues: #que el tipo sea label cuando se cree un nuevo issue y pongamos una etiqueta
     types:
       - labeled
-  workflow_dispatch:
+  workflow_dispatch: #permite que corra manualmente el cual recibe inputs que es de tipo choice que eliges true que es requeridp
     inputs:
       lenguaje_favorito:
        description: 'Lenguaje favorito'
@@ -27,9 +27,9 @@ on:
           required: true
           default: Katherine
           type: string
-  schedule:
+  schedule:  #corre cuando se defina la fecha en este caso corre a las 22:15pm todo los dias, cualquier dia al mes y todo los meses
     - cron: '15 22 * * *'
-jobs:
+jobs: #tomA los valores de los input cuando es un dispacth
   hola-mundo-manual:
     runs-on: ubuntu-latest
     steps:
